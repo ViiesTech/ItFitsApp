@@ -18,6 +18,7 @@ import { AppIcons } from '../../../assets/icons';
 import LineBreak from '../../../components/LineBreak';
 import AppTextInput from '../../../components/AppTextInput';
 import ProductCard from '../../../components/ProductCard';
+import { useNavigation } from '@react-navigation/native';
 
 const categories = [
   { id: 1, title: 'Hoodies', src: AppImages.hoddie },
@@ -50,6 +51,7 @@ const topSell = [
 ];
 
 const Home = () => {
+  const nav = useNavigation();
   return (
     <Container style={{ paddingHorizontal: responsiveWidth(4) }}>
       <View
@@ -130,7 +132,7 @@ const Home = () => {
           textSize={1.8}
           textFontWeight
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => nav.navigate('ShopCategories')}>
           <AppText
             title={'See All'}
             textColor={AppColors.GRAY}
@@ -182,7 +184,7 @@ const Home = () => {
           textSize={1.8}
           textFontWeight
         />
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => nav.navigate('TopSelling')}>
           <AppText
             title={'See All'}
             textColor={AppColors.GRAY}
@@ -196,7 +198,7 @@ const Home = () => {
       <FlatList
         data={topSell}
         horizontal
-        contentContainerStyle={{ gap: responsiveWidth(5) }}
+        contentContainerStyle={{ gap: responsiveWidth(3) }}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <ProductCard
@@ -204,6 +206,7 @@ const Home = () => {
             price={item.price}
             imageSrc={item.src}
             offPrice={item.offPrice}
+            cardOnPress={() => nav.navigate('HomeDetails')}
           />
         )}
       />
@@ -237,7 +240,7 @@ const Home = () => {
       <FlatList
         data={topSell}
         horizontal
-        contentContainerStyle={{ gap: responsiveWidth(5) }}
+        contentContainerStyle={{ gap: responsiveWidth(3) }}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <ProductCard
@@ -245,6 +248,7 @@ const Home = () => {
             price={item.price}
             imageSrc={item.src}
             offPrice={item.offPrice}
+            cardOnPress={() => nav.navigate('HomeDetails')}
           />
         )}
       />

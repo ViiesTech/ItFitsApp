@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react'
 import { Text } from 'react-native'
-import { AppColors, responsiveFontSize, responsiveWidth } from './../utils/index';
+import { AppColors, responsiveFontSize, responsiveHeight, responsiveWidth } from './../utils/index';
 
 type textProps = {
   title?: any
@@ -30,7 +30,7 @@ const AppText = ({ title, textSize, textColor, textTransform, textDecorationLine
         alignSelf: textAlignment ? textAlignment : null,
         borderBottomWidth: borderBottomWidth ? borderBottomWidth : 0,
         borderBottomColor: borderBottomColor ? borderBottomColor : 0,
-        paddingBottom: paddingBottom ? paddingBottom : 0,
+        paddingBottom: paddingBottom ? responsiveHeight(paddingBottom) : 0,
         textTransform: textTransform,
       }}>{title}</Text>
   )

@@ -5,7 +5,7 @@ type Prop = {
   icon: any,
   width: any,
   height: any,
-  style: any,
+  style?: any,
 }
 
 const SVGXml = ({icon, width = 24, height = 33, style}: Prop) => {

@@ -11,12 +11,13 @@ type Prop = {
     price?: any,
     imageSrc?: any,
     offPrice?: any,
+    cardOnPress?: any,
 }
 
-const ProductCard = ({ title, price, imageSrc, offPrice }: Prop) => {
+const ProductCard = ({ title, price, imageSrc, offPrice, cardOnPress }: Prop) => {
     return (
-        <TouchableOpacity style={{ backgroundColor: AppColors.cardColor, borderRadius: 10, width: responsiveWidth(50), paddingVertical: responsiveHeight(2) }}>
-            <View style={{ alignItems: 'flex-end', paddingHorizontal: responsiveWidth(4) }}>
+        <TouchableOpacity onPress={cardOnPress} style={{ backgroundColor: AppColors.cardColor, position: 'relative', borderRadius: 10, width: responsiveWidth(45), paddingVertical: responsiveHeight(2) }}>
+            <View style={{ position: 'absolute', right: 0, zIndex: 999, top: responsiveHeight(1), alignItems: 'flex-end', paddingHorizontal: responsiveWidth(4) }}>
                 <TouchableOpacity>
                     <Feather
                         name="heart"
@@ -25,7 +26,7 @@ const ProductCard = ({ title, price, imageSrc, offPrice }: Prop) => {
                     />
                 </TouchableOpacity>
             </View>
-            <Image source={imageSrc} style={{ width: responsiveWidth(40), height: responsiveHeight(25), alignSelf: 'center' }} />
+            <Image source={imageSrc} style={{ width: responsiveWidth(40), height: responsiveHeight(22), alignSelf: 'center' }} resizeMode='contain' />
             <LineBreak space={1} />
             <View style={{ paddingHorizontal: responsiveWidth(4) }}>
                 <AppText

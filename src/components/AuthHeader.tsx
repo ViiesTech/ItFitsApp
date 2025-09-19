@@ -14,9 +14,11 @@ type Prop = {
     isChange?: any,
     centerText?: any,
     isWhite?: any,
+    centerTextFontBold?:any,
+    rightIcon?:any,
 }
 
-const AuthHeader = ({ title, subTitle, hideGoBack = true, isChange, centerText, isWhite }: Prop) => {
+const AuthHeader = ({ title, subTitle, hideGoBack = true, isChange, centerText, centerTextFontBold, isWhite, rightIcon }: Prop) => {
     const nav = useNavigation();
     return (
         <View>
@@ -32,8 +34,9 @@ const AuthHeader = ({ title, subTitle, hideGoBack = true, isChange, centerText, 
                         title={centerText}
                         textColor={isWhite ? AppColors.WHITE : AppColors.BLACK}
                         textSize={2.5}
+                        textFontWeight={centerTextFontBold}
                     />
-                    {isChange && <View />}
+                    {!isChange || rightIcon ? rightIcon : <View />}
                 </View>
             )}
             {hideGoBack && <LineBreak space={2} />}

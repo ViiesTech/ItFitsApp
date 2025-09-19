@@ -23,6 +23,7 @@ type props = {
   borderBottomWidth?: any;
   borderBottomColor?: any;
   label?: any;
+  editable?: any;
 };
 const AppTextInput = ({
   logo,
@@ -42,6 +43,7 @@ const AppTextInput = ({
   borderBottomWidth,
   borderBottomColor,
   label,
+  editable,
 }: props) => {
   return (
     <View>
@@ -70,6 +72,7 @@ const AppTextInput = ({
           placeholder={inputPlaceHolder}
           value={value}
           onChangeText={onChangeText}
+          editable={editable}
           placeholderTextColor={
             placeholderTextColor ? placeholderTextColor : AppColors.BLACK
           }

@@ -21,4 +21,7 @@ export const AppImages = {
     accessories: require('./accessories.png'),
     top_sell_one: require('./top_sell_one.png'),
     top_sell_two: require('./top_sell_two.png'),
+    product_one: require('./product_one.png'),
+    product_two: require('./product_two.png'),
+    try_outfit: require('./try_outfit.jpg'),
 }
