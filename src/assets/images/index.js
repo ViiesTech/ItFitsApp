@@ -24,4 +24,8 @@ export const AppImages = {
     product_one: require('./product_one.png'),
     product_two: require('./product_two.png'),
     try_outfit: require('./try_outfit.jpg'),
+    watch: require('./watch.png'),
+    captureBgGrid: require('./captureBgGrid.jpg'),
+    captureBg: require('./captureBg.jpg'),
+    galleryImg: require('./galleryImg.png'),
 }

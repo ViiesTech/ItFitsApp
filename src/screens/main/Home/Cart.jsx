@@ -32,7 +32,7 @@ const data = [
 ];
 
 const Cart = () => {
-  const [selectedTab, setSelectedTab] = useState('my_cart');
+  const [selectedTab, setSelectedTab] = useState('My Cart');
   const nav = useNavigation();
 
   return (
@@ -48,14 +48,16 @@ const Cart = () => {
       <LineBreak space={2} />
 
       <TopTabBar
-        tab1OnPress={() => setSelectedTab('my_cart')}
-        tab2OnPress={() => setSelectedTab('whitelist')}
+        tab1OnPress={() => setSelectedTab('My Cart')}
+        tab2OnPress={() => setSelectedTab('Whitelist')}
         selectedTab={selectedTab}
+        tab1Title={'My Cart'}
+        tab2Title={'Whitelist'}
       />
 
       <LineBreak space={2} />
 
-      {selectedTab === 'my_cart' && (
+      {selectedTab === 'My Cart' && (
         <FlatList
           data={data}
           contentContainerStyle={{ paddingHorizontal: responsiveWidth(4) }}
@@ -65,7 +67,7 @@ const Cart = () => {
         />
       )}
 
-      {selectedTab === 'whitelist' && (
+      {selectedTab === 'Whitelist' && (
         <FlatList
           data={data}
           contentContainerStyle={{ paddingHorizontal: responsiveWidth(4) }}

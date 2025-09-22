@@ -6,7 +6,7 @@ import AppText from './AppText'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import LineBreak from './LineBreak';
 
-const MyCartCard = ({ item, whitelist, buttonOnPress, orderDetail }: any) => {
+const MyCartCard = ({ item, whitelist, buttonOnPress, orderDetail, finalShipping }: any) => {
     return (
         <View
             style={{
@@ -89,7 +89,7 @@ const MyCartCard = ({ item, whitelist, buttonOnPress, orderDetail }: any) => {
                         onPress={buttonOnPress}
                     >
                         <AppText
-                            title={whitelist ? "Move to Cart" : "Move Whitelist"}
+                            title={whitelist ? "Move to Cart" : finalShipping ? "Rating" : "Move Whitelist"}
                             textColor={AppColors.BLACK}
                             textSize={1.8}
                         />

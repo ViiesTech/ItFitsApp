@@ -105,18 +105,21 @@ const Home = () => {
 
       <LineBreak space={2} />
 
-      <AppTextInput
-        inputPlaceHolder={'Search'}
-        borderBottomWidth={1}
-        placeholderTextColor={AppColors.BLACK}
-        logo={
-          <Feather
-            name="search"
-            size={responsiveFontSize(3)}
-            color={AppColors.GRAY}
-          />
-        }
-      />
+      <TouchableOpacity onPress={() => nav.navigate("Search")}>
+        <AppTextInput
+          inputPlaceHolder={'Search'}
+          borderBottomWidth={1}
+          editable={false}
+          placeholderTextColor={AppColors.BLACK}
+          logo={
+            <Feather
+              name="search"
+              size={responsiveFontSize(3)}
+              color={AppColors.GRAY}
+            />
+          }
+        />
+      </TouchableOpacity>
       <LineBreak space={1} />
 
       <View
