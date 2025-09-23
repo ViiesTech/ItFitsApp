@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import Container from '../../components/Container';
 import {
@@ -20,6 +20,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const FillYourDetails = () => {
   const nav = useNavigation();
+  const [isSelectedTab, setIsSelectedTab] = useState('men');
   return (
     <Container
       style={{
@@ -33,11 +34,12 @@ const FillYourDetails = () => {
         <AppButton
           title={'Mens'}
           textSize={2}
-          handlePress={() => {}}
-          bgColor={AppColors.lightestBlue}
-          textColor={AppColors.BLACK}
-          borderWidth={1}
-          borderColor={AppColors.lightBlue}
+          handlePress={() => setIsSelectedTab('men')}
+          bgColor={isSelectedTab === 'women' ? AppColors.lightestBlue : null}
+          textColor={isSelectedTab === 'women' ? AppColors.BLACK : AppColors.WHITE}
+          borderWidth={isSelectedTab === 'women' ? 1 : 0}
+          btn_bg={isSelectedTab === 'women' ? null : AppImages.btn_bg}
+          borderColor={isSelectedTab === 'women' ? AppColors.lightBlue : null}
           textFontWeight={true}
           justifyContent={'center'}
           gap={responsiveWidth(3)}
@@ -47,10 +49,13 @@ const FillYourDetails = () => {
         <AppButton
           title={'Womens'}
           textSize={2}
-          handlePress={() => {}}
+          bgColor={isSelectedTab === 'men' ? AppColors.lightestBlue : AppColors.lightestBlue}
+          handlePress={() => setIsSelectedTab('women')}
+          borderWidth={isSelectedTab === 'men' ? 1 : 0}
+          borderColor={isSelectedTab === 'men' ? AppColors.lightBlue : null}
           textFontWeight={true}
-          btn_bg={AppImages.btn_bg}
-          textColor={AppColors.WHITE}
+          btn_bg={isSelectedTab === 'men' ? null : AppImages.btn_bg}
+          textColor={isSelectedTab === 'men' ? AppColors.BLACK : AppColors.WHITE}
           justifyContent={'center'}
           gap={responsiveWidth(3)}
           btnWidth={42}

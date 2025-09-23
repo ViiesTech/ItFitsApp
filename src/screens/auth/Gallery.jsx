@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FlatList,
   ImageBackground,
@@ -46,6 +46,8 @@ const data = [
 
 const Gallery = () => {
   const nav = useNavigation();
+  const [selectedImage, setSelectedImage] = useState({id: 1});
+  
   return (
     <Container
       style={{
@@ -84,7 +86,7 @@ const Gallery = () => {
           paddingLeft: responsiveWidth(0.5),
         }}
         renderItem={({ item }) => (
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setSelectedImage({id: item.id})}>
             <ImageBackground
               source={item.image}
               imageStyle={{ borderRadius: 15 }}
@@ -97,7 +99,7 @@ const Gallery = () => {
                 paddingVertical: responsiveHeight(1),
               }}
             >
-              {item.id == 1 && (
+              {selectedImage.id == item.id && (
                 <SVGXml icon={AppIcons.correct} width={15} height={15} />
               )}
             </ImageBackground>

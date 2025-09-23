@@ -2,6 +2,7 @@
 import React, { ReactNode } from "react";
 import {
     ImageStyle,
+    KeyboardAvoidingView,
     ScrollView,
     StyleProp,
     TextStyle,
@@ -21,7 +22,9 @@ const Container = ({ children, style }: Prop) => {
         <SafeAreaView
             style={[{ flex: 1, backgroundColor: AppColors.WHITE }, style]}
         >
+            <KeyboardAvoidingView behavior="padding" style={{flex: 1}}>
             <ScrollView style={{ flex: 1 }}>{children}</ScrollView>
+            </KeyboardAvoidingView>
         </SafeAreaView>
     );
 };

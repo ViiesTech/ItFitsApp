@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   ImageBackground,
@@ -44,6 +44,8 @@ const faceFilter = [
 ];
 
 const EditYourAvatar = () => {
+    const [selectedTab, setSelectedTab] = useState({id: 1});
+
   return (
     <ImageBackground source={AppImages.edit_avatar_bg} style={{ flex: 1 }}>
       <SafeAreaView style={{ position: 'relative' }}>
@@ -90,11 +92,11 @@ const EditYourAvatar = () => {
               paddingHorizontal: responsiveWidth(4),
             }}
             renderItem={({ item }) => (
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => setSelectedTab({id: item.id})}>
                 <AppText
                   title={item.title}
                   textColor={
-                    item.id == 2 ? AppColors.lightBlue : AppColors.GRAY
+                    selectedTab.id == item.id ? AppColors.lightBlue : AppColors.GRAY
                   }
                   textSize={2}
                   textFontWeight

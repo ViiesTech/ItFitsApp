@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import Container from '../../components/Container';
 import LineBreak from '../../components/LineBreak';
 import AuthHeader from '../../components/AuthHeader';
@@ -18,9 +18,22 @@ import AppButton from '../../components/AppButton';
 import Octicons from 'react-native-vector-icons/Octicons';
 import { AppImages } from '../../assets/images';
 import { useNavigation } from '@react-navigation/native';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const UploadAvatar = () => {
   const nav = useNavigation();
+  const [selectedImage, setSelectedImage] = useState('');
+
+  const handleOpenImagePicker = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      setSelectedImage(image.path);
+    });
+  };
 
   return (
     <Container
@@ -43,11 +56,24 @@ const UploadAvatar = () => {
             alignItems: 'center',
           }}
         >
-          <Feather
-            name={'upload'}
-            size={responsiveFontSize(3.5)}
-            color={AppColors.BLACK}
-          />
+          {selectedImage && (
+            <Image
+              source={{ uri: selectedImage }}
+              style={{
+                position: 'absolute',
+                width: responsiveHeight(15),
+                height: responsiveHeight(15),
+                borderRadius: 100,
+              }}
+            />
+          )}
+          {!selectedImage && (
+            <Feather
+              name={'upload'}
+              size={responsiveFontSize(3.5)}
+              color={AppColors.BLACK}
+            />
+          )}
           <View
             style={{
               position: 'absolute',
@@ -67,6 +93,7 @@ const UploadAvatar = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
               }}
+              onPress={() => handleOpenImagePicker()}
             >
               <FontAwesome
                 name={'pencil'}

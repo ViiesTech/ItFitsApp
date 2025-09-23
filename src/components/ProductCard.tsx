@@ -4,7 +4,7 @@ import { View, Image, TouchableOpacity } from 'react-native'
 import { AppColors, responsiveFontSize, responsiveHeight, responsiveWidth } from '../utils'
 import AppText from './AppText';
 import LineBreak from './LineBreak';
-import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 type Prop = {
     title?: any,
@@ -12,17 +12,19 @@ type Prop = {
     imageSrc?: any,
     offPrice?: any,
     cardOnPress?: any,
+    addFavOnPress?:any,
+    isFav?:any,
 }
 
-const ProductCard = ({ title, price, imageSrc, offPrice, cardOnPress }: Prop) => {
+const ProductCard = ({ title, price, imageSrc, offPrice, cardOnPress, addFavOnPress, isFav }: Prop) => {
     return (
         <TouchableOpacity onPress={cardOnPress} style={{ backgroundColor: AppColors.cardColor, position: 'relative', borderRadius: 10, width: responsiveWidth(45), paddingVertical: responsiveHeight(2) }}>
             <View style={{ position: 'absolute', right: 0, zIndex: 999, top: responsiveHeight(1), alignItems: 'flex-end', paddingHorizontal: responsiveWidth(4) }}>
-                <TouchableOpacity>
-                    <Feather
-                        name="heart"
+                <TouchableOpacity onPress={addFavOnPress}>
+                    <FontAwesome
+                        name={isFav ? "heart" : "heart-o"}
                         size={responsiveFontSize(3)}
-                        color={AppColors.BLACK}
+                        color={isFav ? AppColors.red : AppColors.BLACK}
                     />
                 </TouchableOpacity>
             </View>

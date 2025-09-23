@@ -1,6 +1,6 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Image, TouchableOpacity, FlatList } from 'react-native';
 import Container from '../../../components/Container';
 import {
@@ -52,6 +52,29 @@ const topSell = [
 
 const Home = () => {
   const nav = useNavigation();
+  const [addFav, setAddFav] = useState([]);
+  const [addFavTopSell, setAddFavTopSell] = useState([]);
+
+  const toggleFavorite = (id: number) => {
+    if (addFav.includes(id)) {
+      // remove if already in favorites
+      setAddFav(addFav.filter(favId => favId !== id));
+    } else {
+      // add if not in favorites
+      setAddFav([...addFav, id]);
+    }
+  };
+
+  const topSellToggleFavorite = (id: number) => {
+    if (addFavTopSell.includes(id)) {
+      // remove if already in favorites
+      setAddFavTopSell(addFavTopSell.filter(favId => favId !== id));
+    } else {
+      // add if not in favorites
+      setAddFavTopSell([...addFavTopSell, id]);
+    }
+  };
+
   return (
     <Container style={{ paddingHorizontal: responsiveWidth(4) }}>
       <View
@@ -105,7 +128,7 @@ const Home = () => {
 
       <LineBreak space={2} />
 
-      <TouchableOpacity onPress={() => nav.navigate("Search")}>
+      <TouchableOpacity onPress={() => nav.navigate('Search')}>
         <AppTextInput
           inputPlaceHolder={'Search'}
           borderBottomWidth={1}
@@ -187,7 +210,7 @@ const Home = () => {
           textSize={1.8}
           textFontWeight
         />
-        <TouchableOpacity onPress={() => nav.navigate('TopSelling')}>
+        <TouchableOpacity>
           <AppText
             title={'See All'}
             textColor={AppColors.GRAY}
@@ -210,6 +233,8 @@ const Home = () => {
             imageSrc={item.src}
             offPrice={item.offPrice}
             cardOnPress={() => nav.navigate('HomeDetails')}
+            addFavOnPress={() => topSellToggleFavorite(item.id)}
+            isFav={addFavTopSell?.includes(item.id)}
           />
         )}
       />
@@ -252,6 +277,8 @@ const Home = () => {
             imageSrc={item.src}
             offPrice={item.offPrice}
             cardOnPress={() => nav.navigate('HomeDetails')}
+            addFavOnPress={() => toggleFavorite(item.id)}
+            isFav={addFav?.includes(item.id)}
           />
         )}
       />

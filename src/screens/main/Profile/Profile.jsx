@@ -112,6 +112,23 @@ const Profile = () => {
               }
             />
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => nav.navigate('Auth')}>
+            <AppTextInput
+              inputPlaceHolder={'Logout'}
+              borderBottomWidth={1}
+              borderBottomColor={AppColors.red}
+              placeholderTextColor={AppColors.red}
+              editable={false}
+              inputWidth={80}
+              rightIcon={
+                <Octicons
+                  name={'arrow-right'}
+                  size={responsiveFontSize(3)}
+                  color={AppColors.red}
+                />
+              }
+            />
+          </TouchableOpacity>
         </View>
       )}
 

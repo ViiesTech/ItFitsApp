@@ -11,7 +11,7 @@ import {
 } from '../../../utils';
 import SVGXml from '../../../components/SVGXML';
 import { AppIcons } from '../../../assets/icons';
-import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { AppImages } from '../../../assets/images';
 import LineBreak from '../../../components/LineBreak';
 import AppText from '../../../components/AppText';
@@ -33,6 +33,9 @@ const HomeDetails = () => {
   const nav = useNavigation();
   const [isVisibleSizeModal, setIsVisibleSizeModal] = useState(false);
   const [isVisibleColorModal, setIsVisibleColorModal] = useState(false);
+  const [isAddFav, setIsAddFav] = useState(false);
+  const [selectedSize, setSelectedSize] = useState({ id: 1 });
+  const [selectedColor, setSelectedColor] = useState({ id: 1 });
 
   return (
     <Container style={{ paddingHorizontal: responsiveWidth(4) }}>
@@ -51,11 +54,12 @@ const HomeDetails = () => {
                 alignItems: 'center',
                 borderRadius: 100,
               }}
+              onPress={() => setIsAddFav(!isAddFav)}
             >
-              <Feather
-                name="heart"
+              <FontAwesome
+                name={isAddFav ? 'heart' : 'heart-o'}
                 size={responsiveFontSize(2.5)}
-                color={AppColors.GRAY}
+                color={isAddFav ? AppColors.red : AppColors.BLACK}
               />
             </TouchableOpacity>
             <TouchableOpacity
@@ -85,6 +89,8 @@ const HomeDetails = () => {
           { id: 4, title: 'XL' },
           { id: 5, title: '2XL' },
         ]}
+        selected={selectedSize}
+        setSelected={setSelectedSize}
       />
 
       <ProductModal
@@ -99,6 +105,8 @@ const HomeDetails = () => {
           { id: 5, title: 'Blue', color: 'blue' },
         ]}
         isColorModal={true}
+        selected={selectedColor}
+        setSelected={setSelectedColor}
       />
 
       <FlatList

@@ -21,9 +21,11 @@ type Prop = {
     visible?: any,
     setVisible?: any,
     isColorModal?: any,
+    selected?:any,
+    setSelected?:any,
 }
 
-const ProductModal = ({ title, data, visible, setVisible, isColorModal = false }: Prop) => {
+const ProductModal = ({ title, data, visible, setVisible, isColorModal = false, selected, setSelected }: Prop) => {
 
     return (
         <ScrollView style={styles.container}>
@@ -59,17 +61,19 @@ const ProductModal = ({ title, data, visible, setVisible, isColorModal = false }
                             renderItem={({ item }) => (
                                 <TouchableOpacity
                                     style={{
-                                        backgroundColor: item.id == 1 ? AppColors.GREEN : AppColors.cardColor,
+                                        backgroundColor: selected.id == item.id ? AppColors.GREEN : AppColors.cardColor,
                                         paddingHorizontal: responsiveWidth(6),
                                         paddingVertical: responsiveHeight(1.5),
                                         borderRadius: 10,
                                         flexDirection: 'row',
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
-                                    }}>
+                                    }}
+                                    onPress={() => setSelected({id: item.id})}
+                                    >
                                     <AppText
                                         title={item.title}
-                                        textColor={item.id == 1 ? AppColors.WHITE : AppColors.BLACK}
+                                        textColor={selected.id == item.id ? AppColors.WHITE : AppColors.BLACK}
                                         textSize={2}
                                         textFontWeight
                                     />
@@ -78,10 +82,10 @@ const ProductModal = ({ title, data, visible, setVisible, isColorModal = false }
                                             width: 15, height: 15,
                                             backgroundColor: item?.color,
                                             borderRadius: 100,
-                                            borderWidth: item.id == 1 ? 1 : 0,
+                                            borderWidth: selected.id == item.id ? 1 : 0,
                                             borderColor: AppColors.WHITE,
                                         }} />}
-                                        {item.id == 1 &&
+                                        {selected.id == item.id &&
                                             <Feather
                                                 name="check"
                                                 size={responsiveFontSize(2.5)}
